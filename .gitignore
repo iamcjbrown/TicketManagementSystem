@@ -348,3 +348,8 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+TicketManagementSystem/.DS_Store
+TicketManagementSystem/Email/.DS_Store
+TicketManagementSystem/Email/EmailService.Test/.DS_Store
+TicketManagementSystem/Email/EmailService/.DS_Store
+.DS_Store

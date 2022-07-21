@@ -2,9 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
@@ -12,5 +15,23 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Email\EmailService\EmailService.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Repository\" />
+    <None Remove="Exceptions\" />
+    <None Remove="Model\" />
+    <None Remove="Services\" />
+    <None Remove="Enums\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Model\" />
+    <Folder Include="Services\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

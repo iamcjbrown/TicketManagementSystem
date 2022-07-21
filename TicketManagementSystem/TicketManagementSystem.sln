@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailService", "Email\Email
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService.Test", "Email\EmailService.Test\EmailService.Test.csproj", "{52DA3E00-210E-486F-AA7A-1E5C7CB14F2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManagementSystem.Test", "TicketManagementSystem.Test\TicketManagementSystem.Test.csproj", "{2FF654AF-00EC-45C6-9F17-FA91DDAFC87E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{52DA3E00-210E-486F-AA7A-1E5C7CB14F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52DA3E00-210E-486F-AA7A-1E5C7CB14F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52DA3E00-210E-486F-AA7A-1E5C7CB14F2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF654AF-00EC-45C6-9F17-FA91DDAFC87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF654AF-00EC-45C6-9F17-FA91DDAFC87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF654AF-00EC-45C6-9F17-FA91DDAFC87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF654AF-00EC-45C6-9F17-FA91DDAFC87E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,15 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06BC147B-FF8A-49A9-B87D-1F33DFEB3480}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.scope = text/x-csharp
+		$2.FileWidth = 80
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
 	EndGlobalSection
 EndGlobal
