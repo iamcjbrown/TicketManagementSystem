@@ -24,17 +24,39 @@ namespace TicketManagementSystem
             this.emailService = emailService ?? new EmailServiceProxy();
         }
 
-        public int CreateTicket(string title, Priority priority, string assignedTo, string desc, DateTime date, bool isPayingCustomer) =>
-            this.ticketRepository.CreateTicket(new Ticket()
+        public int CreateTicket(string title, Priority priority, string assignedTo, string desc, DateTime date, bool isPayingCustomer)
+        {
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(desc))
             {
-                Title = string.IsNullOrWhiteSpace(title) ? throw new InvalidTicketException(TitleExceptionMessage) : title,
-                Description = string.IsNullOrWhiteSpace(desc) ? throw new InvalidTicketException(TitleExceptionMessage) : desc,
-                AssignedUser = this.GetUser(assignedTo),
-                Priority = priority = this.RaisePriority(priority, date, title, assignedTo),
+                throw new InvalidTicketException(TitleExceptionMessage);
+            }
+
+            var user = this.GetUser(assignedTo);
+
+            this.RaisePriority(ref priority, date, title);
+
+            this.EmailAdmin(priority, title, assignedTo);
+
+            var price = isPayingCustomer ? priority.Price() : 0;
+
+            var accountManager = isPayingCustomer ? this.userRepository.GetAccountManager() : null;
+
+            var ticket = new Ticket()
+            {
+                Title = title,
+                AssignedUser = user,
+                Priority = priority,
+                Description = desc,
                 Created = date,
-                PriceDollars = isPayingCustomer ? priority.Price() : 0,
-                AccountManager = isPayingCustomer ? this.userRepository.GetAccountManager() : null
-            });
+                PriceDollars = price,
+                AccountManager = accountManager
+            };
+
+            var id = this.ticketRepository.CreateTicket(ticket);
+
+            // Return the id
+            return id;
+        }
 
         public void AssignTicket(int id, string username)
         {
@@ -47,14 +69,8 @@ namespace TicketManagementSystem
             this.ticketRepository.UpdateTicket(ticket);
         }
 
-        private Priority RaisePriority(Priority priority, DateTime date, string title, string assignedTo)
-        {
+        private Priority RaisePriority(ref Priority priority, DateTime date, string title) =>
             priority = priority.RaisePriority(date < DateTime.UtcNow - TimeSpan.FromHours(1) || priorityTitleFlags.Any(title.Contains));
-
-            this.EmailAdmin(priority, title, assignedTo);
-
-            return priority;
-        }
 
         private void EmailAdmin(Priority priority, string title, string assignedTo)
         {
